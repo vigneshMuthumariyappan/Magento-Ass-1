@@ -12,11 +12,6 @@ class ImportJsonTest extends \PHPUnit\Framework\TestCase
      */
     protected $sampleClass;
  
-    /**
-     * @var string
-     */
-    protected $expectedMessage;
- 
     public function setUp() :void
     {
         /**
@@ -35,14 +30,14 @@ class ImportJsonTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @dataProvider additionProvider
+     * @dataProvider fileDataProvider
      */
     public function testImportData($path, $expected)
     {
         $this->assertSame($expected, $this->sampleClass->importData($path));
     }
 
-    public function additionProvider(): array
+    public function fileDataProvider(): array
     {
         return [
             ["path" => "/home/z0374@ad.ziffity.com/Downloads/sample.json",

@@ -11,12 +11,7 @@ class ImportCsvTest extends \PHPUnit\Framework\TestCase
     /**
      * @var View
      */
-    protected $sampleClass;
- 
-    /**
-     * @var string
-     */
-    protected $expectedMessage;
+    private $sampleClass;
  
     public function setUp() :void
     {
@@ -27,16 +22,16 @@ class ImportCsvTest extends \PHPUnit\Framework\TestCase
         $csv = new Csv($driverFile);
         $this->sampleClass = new ImportCsv($driverFile, $csv);
     }
-    
+
     /**
-     * @dataProvider additionProvider
+     * @dataProvider fileDataProvider
      */
     public function testImportData($path, $expected)
     {
         $this->assertSame($expected, $this->sampleClass->importData($path));
     }
 
-    public function additionProvider(): array
+    public function fileDataProvider(): array
     {
 
         return [

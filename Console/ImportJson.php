@@ -48,7 +48,7 @@ class ImportJson implements ImportCustomerDataInterface
      * @param array $arr
      * @param array $set
      */
-    public function recursiveChangeKey($arr, $set)
+    public function recursiveChangeKey(array $arr, array $set) :array
     {
         if (is_array($arr) && is_array($set)) {
             $newArr = [];

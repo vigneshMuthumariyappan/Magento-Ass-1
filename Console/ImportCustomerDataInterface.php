@@ -8,7 +8,7 @@ interface ImportCustomerDataInterface
 {
 
     /**
-     * Import data from Customer table
+     * Import data from Customer data return array
      *
      * @param string $path
      * @return array

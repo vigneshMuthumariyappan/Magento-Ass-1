@@ -62,7 +62,7 @@ class ImportCsv implements ImportCustomerDataInterface
      * @param array $arr
      * @param array $set
      */
-    private function changeKey($arr, $set)
+    private function changeKey(array $arr, array $set) :array
     {
         if (is_array($arr) && is_array($set)) {
             $newArr = $tempArr = [];

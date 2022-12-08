@@ -48,7 +48,7 @@ class SaveCustomerData
      *
      * @param array $data
      */
-    private function prepare($data):array
+    private function prepare(array $data):array
     {
         return [
             'email'         => $data['email'],
