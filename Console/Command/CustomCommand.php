@@ -40,25 +40,33 @@ class CustomCommand extends Command
     protected $saveData;
 
     /**
+     * @var CustomerDataFactory
+     */
+    protected $objectCreate;
+
+    /**
      *
      * @param File $driverFile
      * @param LoggerInterface $logger
      * @param ImportCsv $importCsv
      * @param ImportJson $importJson
      * @param SaveCustomerData $model
+     * @param CustomerDataFactory $objectCreate
      */
     public function __construct(
         \Magento\Framework\Filesystem\Driver\File $driverFile,
         \Psr\Log\LoggerInterface $logger,
         ImportCsv $importCsv,
         ImportJson $importJson,
-        SaveCustomerData $model
+        SaveCustomerData $model,
+        \CustomCommand\ImportCustomerData\Console\CustomerDataFactory $objectCreate
     ) {
         $this->driverFile = $driverFile;
         $this->importCsv = $importCsv;
         $this->importJson = $importJson;
         $this->logger = $logger;
         $this->saveData = $model;
+        $this->objectCreate = $objectCreate;
         parent::__construct();
     }
 
@@ -103,16 +111,7 @@ class CustomCommand extends Command
                 throw new LocalizedException(__("Profile and file extention not matched"));
             }
 
-            switch ($extension) {
-                case 'json':
-                    $data = $this->importJson->importData($path);
-                    break;
-                case 'csv':
-                    $data = $this->importCsv->importData($path);
-                    break;
-                default:
-                    throw new LocalizedException(__("Undefine Method"));
-            }
+            $data = $this->objectCreate->create($extension, $path);
 
             if (isset($report)) {
                 $output->writeln($report);
