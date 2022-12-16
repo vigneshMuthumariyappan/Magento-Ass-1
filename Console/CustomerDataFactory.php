@@ -34,8 +34,10 @@ class CustomerDataFactory
         $this->importCsv = $importCsv;
     }
     /**
+     * Create to supply arr data
      *
-     * @param
+     * @param string $classVar
+     * @param string $path
      */
     public function create(string $classVar, string $path)
     {
